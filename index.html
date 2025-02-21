@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f1f1;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #3498db;
+            padding: 10px 20px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-btn {
+            padding: 8px 15px;
+            background-color: #2980b9;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background-color: #1c638e;
+        }
+        
+        .search-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            padding: 15px 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .header-btn {
+            padding: 10px 20px;
+            background-color: #ecf0f1;
+            border: none;
+            border-radius: 4px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .header-btn:hover {
+            background-color: #627983;
+        }
+        
+        .header-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .header-btn.active:hover {
+            background-color: pink;
+            color: white;
+        }
+        
+        /* Content Area */
+        .content-area {
+            padding: 20px;
+            min-height: calc(100vh - 130px);
+        }
+        
+        .page {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar, .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-buttons, .header-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .header-buttons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Dashboard</div>
+        <div class="nav-buttons">
+            <button class="nav-btn search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                Search
+            </button>
+            <button class="nav-btn">Notifications</button>
+            <button class="nav-btn">Profile</button>
+        </div>
+    </div>
+    
+    <!-- Header Buttons -->
+    <div class="header">
+        <div class="header-buttons">
+            <button class="header-btn active" data-page="home">Home</button>
+            <button class="header-btn" data-page="reports">Reports</button>
+            <button class="header-btn" data-page="users">Users</button>
+            <button class="header-btn" data-page="settings">Settings</button>
+            <button class="header-btn" data-page="help">Help</button>
+        </div>
+    </div>
+    
+    <!-- Content Area -->
+    <div class="content-area">
+        <div id="dashboard" class="page active">
+            <h1>Dashboard Page</h1>
+            <p>This is the main dashboard. Here you can see important statistics and information.</p>
+            <div style="margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap;">
+                <div style="background-color: #e74c3c; color: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 200px;">
+                    <h3>Today's Visits</h3>
+                    <p style="font-size: 24px; margin-top: 10px;">1,234</p>
+                </div>
+                <div style="background-color: #2ecc71; color: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 200px;">
+                    <h3>New Users</h3>
+                    <p style="font-size: 24px; margin-top: 10px;">85</p>
+                </div>
+                <div style="background-color: #f39c12; color: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 200px;">
+                    <h3>Total Sales</h3>
+                    <p style="font-size: 24px; margin-top: 10px;">₹45,678</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="reports" class="page">
+            <h1>Reports Page</h1>
+            <p>Here you can view all reports.</p>
+            <div style="margin-top: 20px;">
+                <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>Monthly Sales Report</h3>
+                    <p>January 2025 - February 2025</p>
+                </div>
+                <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3>User Activity</h3>
+                    <p>Analysis of the last 30 days</p>
+                </div>
+                <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
+                    <h3>Inventory Status</h3>
+                    <p>Current stock levels</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="users" class="page">
+            <h1>Users Page</h1>
+            <p>Here you can view information about all users.</p>
+            <div style="margin-top: 20px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Name</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Email</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Role</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid #ddd;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Jaydeep Kumar</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">jaydeep@example.com</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Admin</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Active</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Priya Sharma</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">priya@example.com</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Manager</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Active</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Amit Singh</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">amit@example.com</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">User</td>
+                            <td style="padding: 12px; border-bottom: 1px solid #ddd;">Inactive</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="settings" class="page">
+            <h1>Settings Page</h1>
+            <p>Here you can customize your dashboard settings.</p>
+            <div style="margin-top: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <h3>Profile Settings</h3>
+                    <div style="margin-top: 10px; background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px;">Username</label>
+                            <input type="text" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" value="admin123">
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px;">Email</label>
+                            <input type="email" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" value="admin@example.com">
+                        </div>
+                        <button style="padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Update</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Dashboard Settings</h3>
+                    <div style="margin-top: 10px; background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px;">Theme</label>
+                            <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option>Default</option>
+                                <option>Dark</option>
+                                <option>Light</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <label style="display: block; margin-bottom: 5px;">Language</label>
+                            <select style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                <option>English</option>
+                                <option>Hindi</option>
+                            </select>
+                        </div>
+                        <button style="padding: 8px 15px; background-color: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer;">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="help" class="page">
+            <h1>Help Page</h1>
+            <p>Here you can get help on how to use the dashboard.</p>
+            <div style="margin-top: 20px;">
+                <div style="margin-bottom: 20px; background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <h3>Frequently Asked Questions</h3>
+                    <div style="margin-top: 15px;">
+                        <details style="margin-bottom: 10px;">
+                            <summary style="padding: 8px; cursor: pointer; font-weight: bold;">How to use the dashboard?</summary>
+                            <p style="padding: 10px; background-color: #f2f2f2; margin-top: 5px; border-radius: 4px;">To use the dashboard, click on the tabs above. Each tab will open a different section.</p>
+                        </details>
+                        <details style="margin-bottom: 10px;">
+                            <summary style="padding: 8px; cursor: pointer; font-weight: bold;">How to download reports?</summary>
+                            <p style="padding: 10px; background-color: #f2f2f2; margin-top: 5px; border-radius: 4px;">To download reports, go to the Reports tab and click on the download button.</p>
+                        </details>
+                        <details>
+                            <summary style="padding: 8px; cursor: pointer; font-weight: bold;">How to change password?</summary>
+                            <p style="padding: 10px; background-color: #f2f2f2; margin-top: 5px; border-radius: 4px;">To change your password, go to the Settings tab and click on the "Change Password" option.</p>
+                        </details>
+                    </div>
+                </div>
+                
+                <div style="background-color: #f9f9f9; padding: 15px; border-radius: 8px;">
+                    <h3>Contact Us</h3>
+                    <p style="margin-top: 10px;">Contact us for any assistance:</p>
+                    <p style="margin-top: 5px;">Email: support@example.com</p>
+                    <p>Phone: +91 9876543210</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.header-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button and page
+                document.querySelectorAll('.header-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Hide all pages and show selected page
+                const targetPage = button.getAttribute('data-page');
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById(targetPage).classList.add('active');
+            });
+        });
+        
+        // Search button action
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const searchTerm = prompt('Enter keyword to search:');
+            if (searchTerm) {
+                alert(`You searched for "${searchTerm}".`);
+            }
+        });
+    </script>
+</body>
+</html>
